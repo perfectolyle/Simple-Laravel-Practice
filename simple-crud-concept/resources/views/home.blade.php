@@ -6,7 +6,16 @@
     <title>Home</title>
 </head>
 <body>
-    <div style="border: 4px solid black; padding: 20px;">
+
+    @auth
+        <p>Congrats, you are logged in</p>
+        <form action="/logout" method="POST">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @else
+        <p>You are not logged in</p>
+        <div style="border: 4px solid black; padding: 20px;">
         <h1>Register</h1>
         <form action="/register" method="POST">
             @csrf
@@ -19,5 +28,6 @@
             <button type="submit">Register</button>
         </form>
     </div>
+    @endauth
 </body>
 </html>

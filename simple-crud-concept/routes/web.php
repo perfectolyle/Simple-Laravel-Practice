@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::post('/register', [UserController::class, 'store']);
