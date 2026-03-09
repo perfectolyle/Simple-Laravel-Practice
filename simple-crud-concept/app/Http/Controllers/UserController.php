@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function store(Request $request)
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
+    }
+    
+    public function register(Request $request)
     {
         $incomingFields = $request->validate([
             'name' => 'required|string|max:255',
