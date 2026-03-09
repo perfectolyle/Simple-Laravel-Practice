@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function login(Request $request){
+        $incomingFields = $request->validate([
+            'login_email' => 'required|string|email|max:255',
+            'login_password' => 'required|string|min:8',
+        ]);
+
+        if(Auth::attempt($incomingFields)){
+            return redirect()->route('home');
+        }
+
+        return redirect()->route('home');
+    }
     public function logout(){
         Auth::logout();
         return redirect()->route('home');
