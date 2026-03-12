@@ -14,11 +14,12 @@ class UserController extends Controller
             'login_password' => 'required|string|min:8',
         ]);
 
-        if(Auth::attempt($incomingFields)){
+        if (Auth::attempt(['email' => $incomingFields['login_email'], 'password' => $incomingFields['login_password']])) {
+            $request->session()->regenerate();
             return redirect()->route('home');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('error', 'Invalid login credentials');
     }
     public function logout(){
         Auth::logout();
