@@ -13,6 +13,18 @@
             @csrf
             <button type="submit">Logout</button>
         </form>
+
+        <div style="border: 4px solid black; padding: 20px;">
+            <h1>Create a Post</h1>
+            <form action="/create-post" method="POST">
+                @csrf
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Title" style="display: block; margin: 10px;">
+                <label for="body">Body</label>
+                <textarea id="body" name="body" placeholder="Body" style="display: block; margin: 10px;"></textarea>
+                <button type="submit" style="display: block; margin: 10px;">Create Post</button>
+            </form>
+        </div>
     @else
         <p>You are not logged in</p>
         <div style="border: 4px solid black; padding: 20px;">
