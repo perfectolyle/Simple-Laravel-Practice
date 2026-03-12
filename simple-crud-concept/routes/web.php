@@ -6,12 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 
 Route::get('/', function () {
-    $posts = [];
-    if (auth()->check()) {
-        $posts = auth()->user()->usersPosts()->latest()->get();
-    }
-
-    // $posts = Post::where('user_id', auth()->id())->get();
+    $posts = Post::latest()->get();
     return view('home', ['posts' => $posts]);
 })->name('home');
 
